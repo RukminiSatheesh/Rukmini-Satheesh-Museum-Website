@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Pile</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- FULL-SCREEN OPENING FRAME -->
+  <section class="opening-screen" id="openingScreen">
+    <div class="opening-frame" id="openingFrame">
+
+      <div class="opening-description" id="openingDescription">
+        <h1>Memory Pile</h1>
+        <p>
+          This website is a library of my personal experiences growing up in India, inspired by The Great Indian Bazaar by Vivan Sundaram. The work comments on the consumer society that emerged in India in the late 1900s as a result of the sweeping economic reforms implemented during that period. Through photography, Sundaram explores the jarring contrast between the rich and the poor, revealing the inequalities and divisions that exist within a rapidly changing society.
+
+As someone who was fortunate enough to grow up in a middle-class household in India, I have been aware of these contrasts, even if I may not have always fully understood them as a child. Despite the changes India has undergone over the years, I feel that this divide continues to exist today. Different social classes live alongside one another, sharing the same spaces and cities, yet experiencing them in very different ways. The quality of life one has access to is still heavily influenced by economic status, and it often feels like a vicious cycle in which the rich continue to get richer while the poor struggle to move forward.
+
+Through this website, I wanted to explore these inequalities through a more personal lens, using my own childhood and experiences rather than directly documenting the divide itself. I chose photographs that hold meaning for me, capturing familiar places, people, and moments that I look back on with nostalgia. Although these images represent my own memories, they also exist within the larger social and economic context in which I grew up.
+
+The website takes inspiration from the visual language of *The Great Indian Bazaar*, particularly its use of photography to reveal the complexities and contradictions of Indian society. By bringing together these personal photographs in a library of memories, I hope to create a subtle tension between the warmth of nostalgia and the inequalities that exist beneath the surface of everyday life. The project is ultimately a reflection on how personal experiences are shaped not only by the memories we hold, but also by the social and economic circumstances in which they take place. 
+        </p>
+        <button id="enterGallery">ENTER THE COLLECTION</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ORIGINAL PHOTO PILE -->
+  <main class="gallery">
+    <div class="pile">
+
+      <button class="frame frame-1" aria-label="Enlarge photograph 1">
+        <img src="9C4F18E1-8D6D-48F4-9B5D-55878EEA9E54 copy.JPG" alt="Photograph 1" draggable="false">
+      </button>
+
+      <button class="frame frame-2" aria-label="Enlarge photograph 2">
+        <img src="20230911_120620 copy.jpg" alt="Photograph 2" draggable="false">
+      </button>
+
+      <button class="frame frame-3" aria-label="Enlarge photograph 3">
+        <img src="DSCN0570 copy.JPG" alt="Photograph 3" draggable="false">
+      </button>
+
+      <button class="frame frame-4" aria-label="Enlarge photograph 4">
+        <img src="DSCN0642 copy.JPG" alt="Photograph 4" draggable="false">
+      </button>
+
+      <button class="frame frame-5" aria-label="Enlarge photograph 5">
+        <img src="IMG_2269 copy.JPG" alt="Photograph 5" draggable="false">
+      </button>
+
+      <button class="frame frame-6" aria-label="Enlarge photograph 6">
+        <img src="IMG_7839 copy.jpg" alt="Photograph 6" draggable="false">
+      </button>
+
+      <button class="frame frame-7" aria-label="Enlarge photograph 7">
+        <img src="IMG_8318 copy.jpg" alt="Photograph 7" draggable="false">
+      </button>
+
+      <button class="frame frame-8" aria-label="Enlarge photograph 8">
+        <img src="IMG_20161231_181303749jpg.0 copy.jpg" alt="Photograph 8" draggable="false">
+      </button>
+
+      <button class="frame frame-9" aria-label="Enlarge photograph 9">
+        <img src="P1010052 copy.JPG" alt="Photograph 9" draggable="false">
+      </button>
+
+      <button class="frame frame-10" aria-label="Enlarge photograph 10">
+        <img src="Screenshot 2026-10-13 at 2.14.07 PM copy.jpg" alt="Photograph 10" draggable="false">
+      </button>
+
+      <button class="frame frame-11" aria-label="Enlarge photograph 11">
+        <img src="P1010038.JPG" alt="Photograph 11" draggable="false">
+      </button>
+
+      <button class="frame frame-12" aria-label="Enlarge photograph 12">
+        <img src="P1010100.JPG" alt="Photograph 12" draggable="false">
+      </button>
+
+      <!-- TEN ADDITIONAL FRAMES -->
+      <button class="frame frame-13" aria-label="Enlarge photograph 13">
+        <img src="4f8414c3-d11b-4ae1-9466-50473d098682.jpg" alt="Photograph 13" draggable="false">
+      </button>
+
+    </div>
+  </main>
+
+  <!-- ENLARGED IMAGE VIEWER -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="close" id="close" aria-label="Close viewer">&times;</button>
+
+    <button class="zoom-button zoom-out" id="zoomOut"
+      aria-label="Zoom out">−</button>
+
+    <div class="zoom-area" id="zoomArea">
+      <img id="enlargedImage" src="" alt="Enlarged photograph">
+    </div>
+
+    <button class="zoom-button zoom-in" id="zoomIn"
+      aria-label="Zoom in">+</button>
+
+    <p class="viewer-hint">Scroll to zoom · Click outside to close</p>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

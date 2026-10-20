@@ -1,0 +1,542 @@
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --frame-red: #982D31;
+  --frame-dark: #541518;
+  --frame-highlight: #D45B5C;
+  --page-beige: #E9E5DF;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--page-beige);
+  font-family: Arial, sans-serif;
+}
+
+/* ORIGINAL GALLERY */
+
+.gallery {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 15px;
+  overflow: hidden;
+}
+
+.pile {
+  position: relative;
+  width: min(760px, 95vw);
+  height: min(760px, 95vw);
+  min-height: 360px;
+}
+
+/* ORIGINAL FRAME DESIGN */
+
+.frame {
+  position: absolute;
+  width: 36%;
+  aspect-ratio: 1.25 / 1;
+  padding: 9px;
+  border: 0;
+  border-radius: 10px;
+
+  background: linear-gradient(
+    145deg,
+    var(--frame-highlight) 0%,
+    var(--frame-red) 18%,
+    #8C252A 65%,
+    var(--frame-dark) 100%
+  );
+
+  box-shadow:
+    inset 0 2px 2px rgba(255, 190, 190, 0.65),
+    inset 0 -3px 3px rgba(35, 0, 0, 0.55),
+    0 4px 4px rgba(0, 0, 0, 0.3),
+    0 9px 14px rgba(0, 0, 0, 0.16);
+
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+
+  /* Dragging is separate from the original rotation */
+  translate: var(--drag-x, 0px) var(--drag-y, 0px);
+
+  transition:
+    box-shadow 0.25s ease;
+
+  overflow: hidden;
+}
+
+.frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 1px solid rgba(55, 25, 20, 0.35);
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+/* ORIGINAL POSITIONS, ROTATIONS AND DEPTH */
+
+.frame-1 {
+  top: 4%;
+  left: 12%;
+  transform: rotate(-17deg);
+  z-index: 2;
+}
+
+.frame-2 {
+  top: 1%;
+  left: 44%;
+  transform: rotate(12deg);
+  z-index: 4;
+}
+
+.frame-3 {
+  top: 19%;
+  left: 30%;
+  transform: rotate(-7deg);
+  z-index: 7;
+}
+
+.frame-4 {
+  top: 17%;
+  left: 59%;
+  transform: rotate(23deg);
+  z-index: 5;
+}
+
+.frame-5 {
+  top: 37%;
+  left: 4%;
+  transform: rotate(11deg);
+  z-index: 8;
+}
+
+.frame-6 {
+  top: 40%;
+  left: 38%;
+  transform: rotate(-19deg);
+  z-index: 10;
+}
+
+.frame-7 {
+  top: 53%;
+  left: 57%;
+  transform: rotate(8deg);
+  z-index: 9;
+}
+
+.frame-8 {
+  top: 64%;
+  left: 14%;
+  transform: rotate(-13deg);
+  z-index: 6;
+}
+
+.frame-9 {
+  top: 69%;
+  left: 43%;
+  transform: rotate(18deg);
+  z-index: 11;
+}
+
+.frame-10 {
+  top: 30%;
+  left: 22%;
+  transform: rotate(28deg);
+  z-index: 12;
+}
+
+.frame-11 {
+  top: 5%;
+  left: 10%;
+  transform: rotate(28deg);
+  z-index: 2;
+}
+
+.frame-12 {
+  top: 0%;
+  left: 0%;
+  transform: rotate(-2deg);
+  z-index: 1;
+}
+
+/* TEN MORE FRAMES IN THE SAME PILE */
+
+.frame-13 {
+  top: 9%;
+  left: 35%;
+  transform: rotate(-11deg);
+  z-index: 3;
+}
+
+.frame-14 {
+  top: 24%;
+  left: 49%;
+  transform: rotate(16deg);
+  z-index: 6;
+}
+
+.frame-15 {
+  top: 28%;
+  left: 1%;
+  transform: rotate(-9deg);
+  z-index: 4;
+}
+
+.frame-16 {
+  top: 45%;
+  left: 19%;
+  transform: rotate(14deg);
+  z-index: 13;
+}
+
+.frame-17 {
+  top: 51%;
+  left: 39%;
+  transform: rotate(-12deg);
+  z-index: 5;
+}
+
+.frame-18 {
+  top: 59%;
+  left: 63%;
+  transform: rotate(17deg);
+  z-index: 3;
+}
+
+.frame-19 {
+  top: 68%;
+  left: 25%;
+  transform: rotate(-6deg);
+  z-index: 7;
+}
+
+.frame-20 {
+  top: 15%;
+  left: 66%;
+  transform: rotate(-15deg);
+  z-index: 2;
+}
+
+.frame-21 {
+  top: 36%;
+  left: 55%;
+  transform: rotate(5deg);
+  z-index: 14;
+}
+
+.frame-22 {
+  top: 61%;
+  left: 2%;
+  transform: rotate(21deg);
+  z-index: 4;
+}
+
+/* ORIGINAL HOVER EFFECTS */
+
+.frame:hover {
+  z-index: 20;
+  box-shadow:
+    inset 0 2px 2px rgba(255, 190, 190, 0.8),
+    0 8px 12px rgba(0, 0, 0, 0.25),
+    0 18px 30px rgba(0, 0, 0, 0.25);
+}
+
+.frame-1:hover  { transform: rotate(-17deg) scale(1.06); }
+.frame-2:hover  { transform: rotate(12deg) scale(1.06); }
+.frame-3:hover  { transform: rotate(-7deg) scale(1.06); }
+.frame-4:hover  { transform: rotate(23deg) scale(1.06); }
+.frame-5:hover  { transform: rotate(11deg) scale(1.06); }
+.frame-6:hover  { transform: rotate(-19deg) scale(1.06); }
+.frame-7:hover  { transform: rotate(8deg) scale(1.06); }
+.frame-8:hover  { transform: rotate(-13deg) scale(1.06); }
+.frame-9:hover  { transform: rotate(18deg) scale(1.06); }
+.frame-10:hover { transform: rotate(28deg) scale(1.06); }
+.frame-11:hover { transform: rotate(28deg) scale(1.06); }
+.frame-12:hover { transform: rotate(-2deg) scale(1.06); }
+.frame-13:hover { transform: rotate(-11deg) scale(1.06); }
+.frame-14:hover { transform: rotate(16deg) scale(1.06); }
+.frame-15:hover { transform: rotate(-9deg) scale(1.06); }
+.frame-16:hover { transform: rotate(14deg) scale(1.06); }
+.frame-17:hover { transform: rotate(-12deg) scale(1.06); }
+.frame-18:hover { transform: rotate(17deg) scale(1.06); }
+.frame-19:hover { transform: rotate(-6deg) scale(1.06); }
+.frame-20:hover { transform: rotate(-15deg) scale(1.06); }
+.frame-21:hover { transform: rotate(5deg) scale(1.06); }
+.frame-22:hover { transform: rotate(21deg) scale(1.06); }
+
+/* DRAGGING: KEEP THE FRAME'S ROTATION */
+
+.frame.dragging {
+  z-index: 100 !important;
+  cursor: grabbing;
+  transition: none;
+}
+
+.frame.dragging:hover {
+  box-shadow:
+    inset 0 2px 2px rgba(255, 190, 190, 0.8),
+    0 12px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* OPENING SCREEN: RED FRAME, BEIGE INSIDE */
+
+.opening-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: var(--page-beige);
+  opacity: 1;
+  visibility: visible;
+  overflow: hidden;
+  cursor: zoom-in;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.opening-frame {
+  position: absolute;
+  inset: 12px;
+  background: var(--page-beige);
+  border: 12px solid var(--frame-red);
+  transform: scale(1);
+  transform-origin: center;
+  transition: transform 1.1s cubic-bezier(.2, .7, .2, 1);
+}
+
+.opening-description {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(100%);
+  transform: translate(-50%, -43%);
+  color: var(--frame-red);
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease;
+}
+
+.opening-description h1 {
+  margin: 0 0 22px;
+  color: var(--frame-red);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: clamp(32px, 5vw, 58px);
+  font-weight: 500;
+  letter-spacing: -1.5px;
+}
+
+.opening-description p {
+  max-width: 1200px;
+  margin: 0 auto;
+  color: var(--frame-red);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  font-weight: 400;
+}
+
+.opening-description button {
+  margin-top: 28px;
+  padding: 12px 18px;
+  border: 1px solid var(--frame-red);
+  border-radius: 0;
+  background: transparent;
+  color: var(--frame-red);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.opening-description button:hover {
+  background: var(--frame-red);
+  color: var(--page-beige);
+}
+
+/* FIRST CLICK ZOOMS IN AND REVEALS THE DESCRIPTION */
+
+.opening-screen.zoomed {
+  cursor: default;
+}
+
+.opening-screen.zoomed .opening-frame {
+  transform: scale(1.07);
+}
+
+.opening-screen.zoomed .opening-description {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%);
+  transition-delay: 0.45s;
+}
+
+/* SECOND ACTION ENTERS THE GALLERY */
+
+.opening-screen.leaving {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ORIGINAL LIGHTBOX */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 10, 10, 0.94);
+  padding: 60px 20px;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.zoom-area {
+  width: min(85vw, 900px);
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.zoom-area img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border: 10px solid var(--frame-red);
+  border-radius: 5px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+  transform-origin: center;
+  transition: transform 0.15s ease;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.close {
+  position: absolute;
+  top: 18px;
+  right: 25px;
+  border: 0;
+  background: transparent;
+  color: white;
+  font-size: 42px;
+  cursor: pointer;
+}
+
+.zoom-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  color: white;
+  background: var(--frame-red);
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.zoom-in {
+  right: 20px;
+}
+
+.zoom-out {
+  left: 20px;
+}
+
+.viewer-hint {
+  position: absolute;
+  bottom: 12px;
+  color: #ddd;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 500px) {
+  .pile {
+    width: 100vw;
+    height: 100vw;
+  }
+
+  .frame {
+    padding: 5px;
+    border-radius: 6px;
+  }
+
+  .lightbox {
+    padding: 55px 8px;
+  }
+
+  .zoom-area {
+    width: 90vw;
+  }
+
+  .zoom-in {
+    right: 8px;
+  }
+
+  .zoom-out {
+    left: 8px;
+  }
+
+  .opening-frame {
+    inset: 8px;
+    border-width: 8px;
+  }
+
+  .opening-description {
+    width: 78%;
+  }
+}
+
+/* Title visible on the first page */
+#openingScreen h1 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 300;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+  color: #982D31;
+
+  opacity: 1;
+  transform: none;
+}
+
+/* Click to enter — visible from the start */
+#enterGallery {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #982D31;
+
+  opacity: 1;
+  transform: none;
+  cursor: pointer;
+}
+
+/* Keep the entrance text subtle */
+#enterGallery:hover {
+  opacity: 0.65;
+}
