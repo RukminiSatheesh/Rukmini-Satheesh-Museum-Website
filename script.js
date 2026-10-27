@@ -1,8 +1,8 @@
-
 const openingScreen = document.getElementById("openingScreen");
 const openingFrame = document.getElementById("openingFrame");
 const openingDescription = document.getElementById("openingDescription");
 const enterGallery = document.getElementById("enterGallery");
+const backToOpening = document.getElementById("backToOpening");
 
 const frames = document.querySelectorAll(".pile .frame");
 
@@ -16,6 +16,7 @@ const zoomOutButton = document.getElementById("zoomOut");
 let zoom = 1;
 let activeFrame = null;
 let highestLayer = 30;
+let hideTimer = null;
 
 // OPENING FRAME: FIRST CLICK ZOOMS IN AND REVEALS TEXT
 openingScreen.addEventListener("click", function (event) {
@@ -30,12 +31,32 @@ openingScreen.addEventListener("click", function (event) {
 enterGallery.addEventListener("click", function () {
     openingScreen.classList.add("leaving");
 
-    setTimeout(function () {
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(function () {
         openingScreen.style.display = "none";
     }, 850);
 });
 
-// MAKE ALL ORIGINAL AND NEW FRAMES MOVABLE
+// GO BACK TO THE OPENING PAGE
+backToOpening.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    // cancel the pending "hide" from entering the gallery
+    clearTimeout(hideTimer);
+
+    // make the screen exist again, with the description already showing
+    openingScreen.style.display = "block";
+    openingScreen.classList.add("zoomed");
+
+    // let the browser register the change, then fade back in
+    void openingScreen.offsetWidth;
+    openingScreen.classList.remove("leaving");
+
+    // start the text at the top
+    openingFrame.scrollTop = 0;
+});
+
+// MAKE ALL FRAMES MOVABLE
 frames.forEach(function (frame) {
     let pointerDown = false;
     let moved = false;
@@ -56,17 +77,13 @@ frames.forEach(function (frame) {
         startX = event.clientX;
         startY = event.clientY;
 
-        originalX =
-            parseFloat(frame.style.getPropertyValue("--drag-x")) || 0;
-
-        originalY =
-            parseFloat(frame.style.getPropertyValue("--drag-y")) || 0;
+        originalX = parseFloat(frame.style.getPropertyValue("--drag-x")) || 0;
+        originalY = parseFloat(frame.style.getPropertyValue("--drag-y")) || 0;
 
         highestLayer++;
         frame.style.zIndex = highestLayer;
 
         frame.classList.add("dragging");
-
         frame.setPointerCapture(event.pointerId);
     });
 
@@ -81,15 +98,8 @@ frames.forEach(function (frame) {
         }
 
         if (moved) {
-            frame.style.setProperty(
-                "--drag-x",
-                `${originalX + dx}px`
-            );
-
-            frame.style.setProperty(
-                "--drag-y",
-                `${originalY + dy}px`
-            );
+            frame.style.setProperty("--drag-x", `${originalX + dx}px`);
+            frame.style.setProperty("--drag-y", `${originalY + dy}px`);
         }
     });
 

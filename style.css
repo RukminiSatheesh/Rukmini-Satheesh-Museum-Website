@@ -1,4 +1,3 @@
-
 * {
   box-sizing: border-box;
 }
@@ -17,29 +16,63 @@ body {
   font-family: Arial, sans-serif;
 }
 
-/* ORIGINAL GALLERY */
+/* GALLERY */
 
 .gallery {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 35px 15px;
+  padding: 24px 2vw max(28px, env(safe-area-inset-bottom));
   overflow: hidden;
 }
 
-.pile {
+/* GO BACK LINK: BOTTOM OF THE PAGE, FRAME RED */
+
+.back-to-opening {
+  order: 2;
+  margin-top: 28px;
+  padding: 10px 4px;
   position: relative;
-  width: min(760px, 95vw);
-  height: min(760px, 95vw);
-  min-height: 360px;
+  z-index: 5;
+  color: var(--frame-red);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
 }
 
-/* ORIGINAL FRAME DESIGN */
+.back-to-opening:hover {
+  opacity: 0.65;
+}
+
+/* PILE: WIDE ON DESKTOP */
+
+.pile {
+  --frame-w: 22%;
+  --x-off: 3%;
+  --x-scale: 1.05;
+  --y-off: 4%;
+  --y-scale: 0.86;
+
+  order: 1;
+  position: relative;
+  isolation: isolate;
+  width: min(96vw, 1400px, max(520px, calc((100vh - 150px) * 1.6)));
+  aspect-ratio: 1.6 / 1;
+}
+
+/* FRAME DESIGN */
 
 .frame {
   position: absolute;
-  width: 36%;
+  left: calc(var(--x-off) + var(--x) * var(--x-scale));
+  top: calc(var(--y-off) + var(--y) * var(--y-scale));
+  width: var(--frame-w);
   aspect-ratio: 1.25 / 1;
   padding: 9px;
   border: 0;
@@ -59,17 +92,17 @@ body {
     0 4px 4px rgba(0, 0, 0, 0.3),
     0 9px 14px rgba(0, 0, 0, 0.16);
 
+  transform: rotate(var(--r, 0deg));
+
   cursor: grab;
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
 
-  /* Dragging is separate from the original rotation */
+  /* Dragging is separate from the rotation */
   translate: var(--drag-x, 0px) var(--drag-y, 0px);
 
-  transition:
-    box-shadow 0.25s ease;
-
+  transition: box-shadow 0.25s ease;
   overflow: hidden;
 }
 
@@ -84,198 +117,43 @@ body {
   -webkit-user-drag: none;
 }
 
-/* ORIGINAL POSITIONS, ROTATIONS AND DEPTH */
+/* POSITIONS (--x, --y), ROTATIONS (--r) AND DEPTH */
 
-.frame-1 {
-  top: 4%;
-  left: 12%;
-  transform: rotate(-17deg);
-  z-index: 2;
-}
+.frame-1  { --x: 12%; --y: 4%;  --r: -17deg; z-index: 2; }
+.frame-2  { --x: 44%; --y: 1%;  --r: 12deg;  z-index: 4; }
+.frame-3  { --x: 30%; --y: 19%; --r: -7deg;  z-index: 7; }
+.frame-4  { --x: 59%; --y: 17%; --r: 23deg;  z-index: 5; }
+.frame-5  { --x: 4%;  --y: 37%; --r: 11deg;  z-index: 8; }
+.frame-6  { --x: 38%; --y: 40%; --r: -19deg; z-index: 10; }
+.frame-7  { --x: 57%; --y: 53%; --r: 8deg;   z-index: 9; }
+.frame-8  { --x: 14%; --y: 64%; --r: -13deg; z-index: 6; }
+.frame-9  { --x: 43%; --y: 69%; --r: 18deg;  z-index: 11; }
+.frame-10 { --x: 22%; --y: 30%; --r: 28deg;  z-index: 12; }
+.frame-11 { --x: 10%; --y: 5%;  --r: 28deg;  z-index: 2; }
+.frame-12 { --x: 0%;  --y: 0%;  --r: -2deg;  z-index: 1; }
+.frame-13 { --x: 35%; --y: 9%;  --r: -11deg; z-index: 3; }
+.frame-14 { --x: 49%; --y: 24%; --r: 16deg;  z-index: 6; }
+.frame-15 { --x: 1%;  --y: 28%; --r: -9deg;  z-index: 4; }
+.frame-16 { --x: 19%; --y: 45%; --r: 14deg;  z-index: 13; }
+.frame-17 { --x: 39%; --y: 51%; --r: -12deg; z-index: 5; }
+.frame-18 { --x: 63%; --y: 59%; --r: 17deg;  z-index: 3; }
+.frame-19 { --x: 25%; --y: 68%; --r: -6deg;  z-index: 7; }
+.frame-20 { --x: 66%; --y: 15%; --r: -15deg; z-index: 2; }
+.frame-21 { --x: 36%; --y: 36%; --r: 5deg;   z-index: 14; }
+.frame-22 { --x: 2%;  --y: 61%; --r: 21deg;  z-index: 4; }
 
-.frame-2 {
-  top: 1%;
-  left: 44%;
-  transform: rotate(12deg);
-  z-index: 4;
-}
-
-.frame-3 {
-  top: 19%;
-  left: 30%;
-  transform: rotate(-7deg);
-  z-index: 7;
-}
-
-.frame-4 {
-  top: 17%;
-  left: 59%;
-  transform: rotate(23deg);
-  z-index: 5;
-}
-
-.frame-5 {
-  top: 37%;
-  left: 4%;
-  transform: rotate(11deg);
-  z-index: 8;
-}
-
-.frame-6 {
-  top: 40%;
-  left: 38%;
-  transform: rotate(-19deg);
-  z-index: 10;
-}
-
-.frame-7 {
-  top: 53%;
-  left: 57%;
-  transform: rotate(8deg);
-  z-index: 9;
-}
-
-.frame-8 {
-  top: 64%;
-  left: 14%;
-  transform: rotate(-13deg);
-  z-index: 6;
-}
-
-.frame-9 {
-  top: 69%;
-  left: 43%;
-  transform: rotate(18deg);
-  z-index: 11;
-}
-
-.frame-10 {
-  top: 30%;
-  left: 22%;
-  transform: rotate(28deg);
-  z-index: 12;
-}
-
-.frame-11 {
-  top: 5%;
-  left: 10%;
-  transform: rotate(28deg);
-  z-index: 2;
-}
-
-.frame-12 {
-  top: 0%;
-  left: 0%;
-  transform: rotate(-2deg);
-  z-index: 1;
-}
-
-/* TEN MORE FRAMES IN THE SAME PILE */
-
-.frame-13 {
-  top: 9%;
-  left: 35%;
-  transform: rotate(-11deg);
-  z-index: 3;
-}
-
-.frame-14 {
-  top: 24%;
-  left: 49%;
-  transform: rotate(16deg);
-  z-index: 6;
-}
-
-.frame-15 {
-  top: 28%;
-  left: 1%;
-  transform: rotate(-9deg);
-  z-index: 4;
-}
-
-.frame-16 {
-  top: 45%;
-  left: 19%;
-  transform: rotate(14deg);
-  z-index: 13;
-}
-
-.frame-17 {
-  top: 51%;
-  left: 39%;
-  transform: rotate(-12deg);
-  z-index: 5;
-}
-
-.frame-18 {
-  top: 59%;
-  left: 63%;
-  transform: rotate(17deg);
-  z-index: 3;
-}
-
-.frame-19 {
-  top: 68%;
-  left: 25%;
-  transform: rotate(-6deg);
-  z-index: 7;
-}
-
-.frame-20 {
-  top: 15%;
-  left: 66%;
-  transform: rotate(-15deg);
-  z-index: 2;
-}
-
-.frame-21 {
-  top: 36%;
-  left: 55%;
-  transform: rotate(5deg);
-  z-index: 14;
-}
-
-.frame-22 {
-  top: 61%;
-  left: 2%;
-  transform: rotate(21deg);
-  z-index: 4;
-}
-
-/* ORIGINAL HOVER EFFECTS */
+/* HOVER */
 
 .frame:hover {
   z-index: 20;
+  transform: rotate(var(--r, 0deg)) scale(1.06);
   box-shadow:
     inset 0 2px 2px rgba(255, 190, 190, 0.8),
     0 8px 12px rgba(0, 0, 0, 0.25),
     0 18px 30px rgba(0, 0, 0, 0.25);
 }
 
-.frame-1:hover  { transform: rotate(-17deg) scale(1.06); }
-.frame-2:hover  { transform: rotate(12deg) scale(1.06); }
-.frame-3:hover  { transform: rotate(-7deg) scale(1.06); }
-.frame-4:hover  { transform: rotate(23deg) scale(1.06); }
-.frame-5:hover  { transform: rotate(11deg) scale(1.06); }
-.frame-6:hover  { transform: rotate(-19deg) scale(1.06); }
-.frame-7:hover  { transform: rotate(8deg) scale(1.06); }
-.frame-8:hover  { transform: rotate(-13deg) scale(1.06); }
-.frame-9:hover  { transform: rotate(18deg) scale(1.06); }
-.frame-10:hover { transform: rotate(28deg) scale(1.06); }
-.frame-11:hover { transform: rotate(28deg) scale(1.06); }
-.frame-12:hover { transform: rotate(-2deg) scale(1.06); }
-.frame-13:hover { transform: rotate(-11deg) scale(1.06); }
-.frame-14:hover { transform: rotate(16deg) scale(1.06); }
-.frame-15:hover { transform: rotate(-9deg) scale(1.06); }
-.frame-16:hover { transform: rotate(14deg) scale(1.06); }
-.frame-17:hover { transform: rotate(-12deg) scale(1.06); }
-.frame-18:hover { transform: rotate(17deg) scale(1.06); }
-.frame-19:hover { transform: rotate(-6deg) scale(1.06); }
-.frame-20:hover { transform: rotate(-15deg) scale(1.06); }
-.frame-21:hover { transform: rotate(5deg) scale(1.06); }
-.frame-22:hover { transform: rotate(21deg) scale(1.06); }
-
-/* DRAGGING: KEEP THE FRAME'S ROTATION */
+/* DRAGGING */
 
 .frame.dragging {
   z-index: 100 !important;
@@ -306,6 +184,8 @@ body {
 .opening-frame {
   position: absolute;
   inset: 12px;
+  display: flex;
+  overflow-y: auto;
   background: var(--page-beige);
   border: 12px solid var(--frame-red);
   transform: scale(1);
@@ -313,12 +193,13 @@ body {
   transition: transform 1.1s cubic-bezier(.2, .7, .2, 1);
 }
 
+/* In normal flow + margin:auto = centred when it fits, scrollable when it doesn't */
 .opening-description {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: min(100%);
-  transform: translate(-50%, -43%);
+  position: relative;
+  width: 100%;
+  margin: auto;
+  padding: 28px clamp(16px, 5vw, 60px);
+  transform: translateY(20px);
   color: var(--frame-red);
   text-align: center;
   opacity: 0;
@@ -338,13 +219,7 @@ body {
 }
 
 .opening-description p {
-  max-width: 1200px;
-  margin: 0 auto;
-  color: var(--frame-red);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
-  line-height: 1.8;
-  font-weight: 400;
+
 }
 
 .opening-description button {
@@ -379,7 +254,7 @@ body {
 .opening-screen.zoomed .opening-description {
   opacity: 1;
   visibility: visible;
-  transform: translate(-50%, -50%);
+  transform: none;
   transition-delay: 0.45s;
 }
 
@@ -391,7 +266,7 @@ body {
   pointer-events: none;
 }
 
-/* ORIGINAL LIGHTBOX */
+/* LIGHTBOX */
 
 .lightbox {
   position: fixed;
@@ -472,15 +347,56 @@ body {
   letter-spacing: 0.5px;
 }
 
-@media (max-width: 500px) {
+/* TITLE + ENTER BUTTON */
+
+#openingScreen h1 {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 300;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+  color: #982D31;
+  opacity: 1;
+  transform: none;
+}
+
+#enterGallery {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #982D31;
+  opacity: 1;
+  transform: none;
+  cursor: pointer;
+}
+
+#enterGallery:hover {
+  opacity: 0.65;
+}
+
+/* PHONES AND SMALL TABLETS: NEAR-SQUARE PILE, LARGER FRAMES */
+
+@media (max-width: 700px) {
   .pile {
-    width: 100vw;
-    height: 100vw;
+    --frame-w: 36%;
+    --x-off: 3%;
+    --x-scale: 0.78;
+    --y-off: 4%;
+    --y-scale: 0.86;
+    width: min(96vw, 640px);
+    aspect-ratio: 1 / 1;
   }
 
   .frame {
     padding: 5px;
     border-radius: 6px;
+  }
+
+  .back-to-opening {
+    margin-top: 20px;
+    font-size: 10px;
   }
 
   .lightbox {
@@ -504,39 +420,99 @@ body {
     border-width: 8px;
   }
 
-  .opening-description {
-    width: 78%;
+  .opening-description p {
+    font-size: 14px;
+    line-height: 1.7;
   }
 }
 
-/* Title visible on the first page */
+/* ONE TYPEFACE FOR EVERYTHING */
+
+:root {
+  --font: "Courier Prime", "Courier New", Courier, monospace;
+}
+
+* {
+  font-family: var(--font) !important;
+}
+
+/* Typewriter text is wider, so adjust spacing and size to fit */
 #openingScreen h1 {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: clamp(36px, 5vw, 58px);
-  font-weight: 300;
-  letter-spacing: -0.045em;
-  line-height: 1.1;
-  color: #982D31;
-
-  opacity: 1;
-  transform: none;
-}
-
-/* Click to enter — visible from the start */
-#enterGallery {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 10px;
   font-weight: 400;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: #982D31;
-
-  opacity: 1;
-  transform: none;
-  cursor: pointer;
+  letter-spacing: -0.04em;
 }
 
-/* Keep the entrance text subtle */
-#enterGallery:hover {
-  opacity: 0.65;
+.opening-description p {
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+@media (max-width: 700px) {
+  .opening-description p {
+    font-size: 13px;
+  }
+}
+
+/* BODY TEXT: TWO COLUMNS */
+
+/* Works with the single <p> ... */
+.opening-description > p {
+  max-width: 900px;
+  margin: 0 auto;
+  column-count: 2;
+  column-gap: 48px;
+  text-align: left;
+  white-space: pre-line; /* keeps the blank lines between your paragraphs */
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+/* ... and with the four-paragraph .opening-text wrapper */
+.opening-description .opening-text {
+  max-width: 900px;
+  margin: 0 auto;
+  column-count: 2;
+  column-gap: 48px;
+  text-align: left;
+}
+
+.opening-description .opening-text p {
+  max-width: none;
+  margin: 0;
+  text-indent: 2em;
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+/* One column only on narrow screens */
+@media (max-width: 800px) {
+  .opening-description > p,
+  .opening-description .opening-text {
+    column-count: 1;
+    max-width: 520px;
+  }
+}
+
+@media (max-width: 700px) {
+  .opening-description > p,
+  .opening-description .opening-text p {
+    font-size: 11.5px;
+    line-height: 1.7;
+  }
+}
+/* EVEN RAG + EQUAL COLUMNS, NO HYPHENATION */
+
+.opening-description > p,
+.opening-description .opening-text {
+  column-fill: balance;   /* both columns end at the same height */
+  column-gap: 48px;
+}
+
+.opening-description > p,
+.opening-description .opening-text p {
+  hyphens: none;
+  -webkit-hyphens: none;
+  text-wrap: pretty;      /* avoids very short last lines and uneven endings */
+  orphans: 2;
+  widows: 2;
 }
